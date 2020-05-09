@@ -1,14 +1,23 @@
 package main
 
 import (
+	"os"
+
 	log "github.com/sirupsen/logrus"
 
 	sshlogexporter "github.com/DenBeke/ssh-log-exporter"
 )
 
+func getEnv(key, fallback string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return fallback
+}
+
 var (
 	HTTPPort = 9090
-	LOGFILE  = "/var/log/auth.log"
+	LOGFILE  = getEnv("LOGFILE", "/var/log/auth.log")
 )
 
 func main() {
