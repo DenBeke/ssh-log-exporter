@@ -8,7 +8,7 @@ import (
 
 var (
 	HTTPPort = 9090
-	LOGFILE  = "auth.log"
+	LOGFILE  = "/var/log/auth.log"
 )
 
 func main() {
