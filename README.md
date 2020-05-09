@@ -7,6 +7,9 @@
 ⚠️ This was written on a Friday night, while drinking some Belgian beers. You better don't look too much at the code, and don't use it in production. 😇🍻
 
 
+![ssh-attack-attempts-grafana](ssh-attack-attempts-grafana.png)
+
+
 ## Usage
 
     go run sshlogexporter/main.go
