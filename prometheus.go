@@ -15,7 +15,7 @@ var (
 			Name: "ssh_attack_attempts_total",
 			Help: "How many SSH actions processed, partitioned by ...",
 		},
-		[]string{"ip", "country"},
+		[]string{"ip", "country", "country_name"},
 	)
 )
 

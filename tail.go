@@ -24,10 +24,10 @@ func TailAuthLog(logFile string) error {
 		}
 
 		if s.IsAttackAttempt() {
-			sshAttempts.WithLabelValues(s.IP, s.Country).Add(1)
+			sshAttempts.WithLabelValues(s.IP, s.Country, s.CountryName).Add(1)
 		}
 
-		log.WithField("ip", s.IP).WithField("country", s.Country).WithField("username", s.Username).WithField("attack_attempt", s.IsAttackAttempt()).Printf(s.Log)
+		log.WithField("ip", s.IP).WithField("country", s.Country).WithField("country_name", s.CountryName).WithField("username", s.Username).WithField("attack_attempt", s.IsAttackAttempt()).Printf(s.Log)
 	}
 
 	return nil

@@ -21,6 +21,7 @@ func TestSSHParse(t *testing.T) {
 					Other,
 					"192.168.1.1",
 					"",
+					"",
 					"denbeke",
 					"Accepted publickey for denbeke from 192.168.1.1 port 54822 ssh2: RSA SHA256:grzgrgkzrgkrzmgnkzrkhgzrhgrzhzr",
 				},
@@ -30,6 +31,7 @@ func TestSSHParse(t *testing.T) {
 				false,
 				SSHLogLine{
 					SessionOpened,
+					"",
 					"",
 					"",
 					"denbeke",
@@ -43,6 +45,7 @@ func TestSSHParse(t *testing.T) {
 					InvalidUser,
 					"182.61.46.245",
 					"CN",
+					"People's Republic of China",
 					"pipo",
 					"Invalid user pipo from 182.61.46.245 port 53214",
 				},
@@ -54,6 +57,7 @@ func TestSSHParse(t *testing.T) {
 					Other,
 					"182.61.46.245",
 					"CN",
+					"People's Republic of China",
 					"",
 					"Received disconnect from 182.61.46.245 port 53214:11: Bye Bye [preauth]",
 				},
@@ -65,6 +69,7 @@ func TestSSHParse(t *testing.T) {
 					Other,
 					"182.61.46.245",
 					"CN",
+					"People's Republic of China",
 					"pipo",
 					"Disconnected from invalid user pipo 182.61.46.245 port 53214 [preauth]",
 				},
@@ -76,6 +81,7 @@ func TestSSHParse(t *testing.T) {
 					Other,
 					"129.158.125.138",
 					"US",
+					"United States of America",
 					"",
 					"Connection closed by 129.158.125.138 port 8713 [preauth]",
 				},
@@ -87,6 +93,7 @@ func TestSSHParse(t *testing.T) {
 					InvalidUser,
 					"117.131.60.57",
 					"CN",
+					"People's Republic of China",
 					"45.77.54.162",
 					"Invalid user 45.77.54.162 from 117.131.60.57 port 60269",
 				},
@@ -98,6 +105,7 @@ func TestSSHParse(t *testing.T) {
 					DidNotReceiveIdentificationString,
 					"183.111.104.197",
 					"KR",
+					"Republic of Korea",
 					"",
 					"Did not receive identification string from 183.111.104.197 port 17413",
 				},
@@ -109,6 +117,7 @@ func TestSSHParse(t *testing.T) {
 					DisconnectedFromAuthenticating,
 					"117.131.60.57",
 					"CN",
+					"People's Republic of China",
 					"root",
 					"Disconnected from authenticating user root 194.180.224.130 port 34938 [preauth]",
 				},
@@ -124,6 +133,7 @@ func TestSSHParse(t *testing.T) {
 				So(output.Type, ShouldEqual, t.ExpectedOutput.Type)
 				So(output.IP, ShouldEqual, t.ExpectedOutput.IP)
 				So(output.Country, ShouldEqual, t.ExpectedOutput.Country)
+				So(output.CountryName, ShouldEqual, t.ExpectedOutput.CountryName)
 				So(output.Username, ShouldEqual, t.ExpectedOutput.Username)
 
 				So(output.IsAttackAttempt(), ShouldEqual, t.IsAttempt)

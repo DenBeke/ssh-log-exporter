@@ -4,6 +4,7 @@ import (
 	"net"
 	"strings"
 
+	"github.com/pariz/gountries"
 	"github.com/phuslu/geoip"
 )
 
@@ -16,11 +17,12 @@ const (
 )
 
 type SSHLogLine struct {
-	Type     string
-	IP       string
-	Country  string
-	Username string
-	Log      string
+	Type        string
+	IP          string
+	Country     string
+	CountryName string
+	Username    string
+	Log         string
 }
 
 func (s *SSHLogLine) IsAttackAttempt() bool {
@@ -77,6 +79,15 @@ func ParseSSHLine(line string) (s *SSHLogLine, err error) {
 	s.Country = string(geoip.Country(net.ParseIP(s.IP)))
 	if s.Country == "ZZ" {
 		s.Country = ""
+	}
+
+	if s.Country != "" {
+		query := gountries.New()
+		c, err2 := query.FindCountryByAlpha(s.Country)
+		if err2 != nil {
+			return
+		}
+		s.CountryName = c.Name.Official
 	}
 
 	line = strings.ToLower(line)
